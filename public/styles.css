@@ -1,8 +1,8 @@
 /* =====================================================================
    Peshagi — Coming Soon landing page
    Cloned from Figma (Peshagi_GUI, node 2001:221).
-   Design canvas: 1920 px wide. Fonts: Poppins + a script face
-   (Dancing Script standing in for the design's "Shotflick Demo").
+   Design canvas: 1920 px wide. Fonts: Poppins (body) + Shotflick Demo
+   (script headings, self-hosted from assets/ShotflickDemoRegular.ttf).
    ===================================================================== */
 
 :root {
@@ -14,6 +14,15 @@
   --field:        rgba(255, 255, 255, 0.86);
   --max:          1920px;
   --pad:          clamp(20px, 6.25vw, 120px);  /* 120px gutters at 1920 */
+}
+
+/* Script face used in the design ("Shotflick Demo"), self-hosted. */
+@font-face {
+  font-family: "Shotflick Demo";
+  src: url("assets/ShotflickDemoRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,9 +47,9 @@ img { display: block; max-width: 100%; }
 }
 
 .script {
-  font-family: "Dancing Script", "Poppins", cursive;
+  font-family: "Shotflick Demo", "Poppins", cursive;
   color: var(--green);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.1;
 }
 
@@ -352,8 +361,8 @@ img { display: block; max-width: 100%; }
 
 .textarea-field { position: relative; }
 .textarea-field .field {
-  height: 84px;
-  padding: 14px 16px;
+  height: 52px;                        /* match the other fields */
+  padding: 14px 40px 14px 16px;        /* right pad clears the count badge */
   line-height: 1.5;
   resize: none;
 }
@@ -456,7 +465,9 @@ img { display: block; max-width: 100%; }
   .contact__title { font-size: clamp(42px, 15vw, 60px); margin-bottom: 28px; }
   .contact__form { padding: 44px 20px; }
   .row { flex-direction: column; gap: 16px; }
+  /* column stack: don't let flex-basis:0 collapse the field heights */
+  .row .field { flex: 0 0 auto; }
   .field { height: 44px; font-size: 14px; }
-  .textarea-field .field { height: 100px; }
+  .textarea-field .field { height: 44px; padding: 11px 40px 11px 16px; }
   .submit { width: 135px; margin-top: 6px; }
 }
