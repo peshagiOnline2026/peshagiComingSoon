@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peshagi — Coming Soon</title>
+  <meta name="description" content="PESHAGI brings you the essence of Ayurveda, blending ancient wisdom with modern skincare needs." />
+
+  <!-- Fonts: Poppins (as in design). Dancing Script is used as a free stand-in
+       for the design's "Shotflick Demo" script face. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================= HERO ============================= -->
+  <header class="hero">
+    <!-- Looping background video (muted so it can autoplay). img_BG.png is the
+         poster shown while it loads / if video is unavailable. The green
+         overlay below keeps the hero text legible. -->
+    <video class="hero__bg" autoplay muted loop playsinline preload="auto"
+           poster="assets/img_BG.png" aria-hidden="true">
+      <source src="assets/Copy%20of%20Edit_Peshagi_v19%20(2).mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <nav class="hero__nav container">
+      <a class="logo" href="#" aria-label="Peshagi home">
+        <img class="logo__icon" src="assets/logo_icon.svg" alt="" />
+        <img class="logo__word" src="assets/logo_word.svg" alt="Peshagi" />
+      </a>
+    </nav>
+
+    <div class="hero__content">
+      <h1 class="hero__title">Rare Ingredients.<br />Infinite Rejuvenation</h1>
+      <p class="hero__sub">
+        Brighten, rejuvenate, and reveal your radiance with Peshagi. Our 100% natural, exquisite blend of
+        Hunder-Baie, Pistachio, Jatamansi, Tulsi, and more, transforms your body from head to heel.
+        Because your body deserves the extraordinary.
+      </p>
+
+      <form class="notify" id="notifyForm">
+        <input type="email" name="email" placeholder="Email address" aria-label="Email address" required />
+        <button type="submit">Join Peshagi</button>
+      </form>
+
+      <p class="hero__note">Invite me to the Brand Launch</p>
+      <p class="form-status" id="notifyStatus" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="hero__audio">
+      <button type="button" class="icon-btn" aria-label="Mute audio">
+        <img src="assets/mute_icon.svg" alt="" />
+      </button>
+      <button type="button" class="icon-btn" aria-label="Pause">
+        <img src="assets/pause_icon.svg" alt="" />
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================= ABOUT ============================= -->
+  <section class="about container">
+    <div class="about__left">
+      <h2 class="script about__script">Relating to us</h2>
+      <div class="about__text">
+        <p>
+          Born from a love story, driven by a commitment to natural healing. Our products began with a
+          simple need for truly effective lip care, leading us to craft potent balms and beyond with rare
+          ingredients sourced from extreme environments. These &ldquo;skin health warriors&rdquo; are
+          designed for deep healing and are now part of our exclusive bundles of well-being. We cultivate
+          and source nutrient-dense ingredients, prioritizing high medicinal value.
+        </p>
+        <p>
+          Step into a world where Ayurveda&rsquo;s most sacred rituals are refined into exquisite,
+          high-performance elixirs. At Peshagi, we craft nature&rsquo;s most potent remedies into a
+          luxurious self-healing experience.
+        </p>
+        <p>
+          The word &ldquo;Peshagi&rdquo; means an offering, something given in advance for a new beginning.
+          Our philosophy is rooted in this essence, delivering high-potency, 100% natural formulations
+          designed to honor your skin and soul.
+        </p>
+        <p>
+          Peshagi was not born from trends, but from necessity. When synthetic formulations failed, and even
+          the finest &ldquo;organic&rdquo; alternatives did not meet our standards, we turned to
+          nature&rsquo;s rarest and most potent elements, sourcing from extreme, nutrient-rich environments
+          to create our first elixir.
+        </p>
+        <p>
+          What started as a simple blend, a lip balm crafted in a humble kitchen, soon became the foundation
+          of something greater: a brand committed to high-value, deeply restorative botanical remedies for
+          the discerning / luxury seeking connoisseurs.
+        </p>
+        <p>
+          At Peshagi, we serve a deeper need, the pursuit of purity, efficacy, and time-honored healing.
+          Every ingredient is carefully cultivated or sourced at peak potency, ensuring that our formulations
+          embody not just luxury, but profound medicinal integrity.
+        </p>
+        <p>Please accept our PESHAGI to embark on your journey of exquisite healing.</p>
+      </div>
+    </div>
+
+    <img class="about__leaf" src="assets/leaf_divider.svg" alt="" />
+
+    <div class="about__right">
+      <h2 class="about__headline">Exquisite Personal Care is Our First PESHAGI</h2>
+    </div>
+  </section>
+
+  <!-- ============================= VIDEO ============================= -->
+  <section class="video container">
+    <div class="video__frame">
+      <!-- Looping cover video (muted so it can autoplay), same as the hero. -->
+      <video class="video__media" autoplay muted loop playsinline preload="auto"
+             poster="assets/1%201.png">
+        <source src="assets/Copy%20of%20Edit_Peshagi_15sec_v06.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <!-- ============================= VISION ============================= -->
+  <section class="vision container">
+    <p class="script vision__label">Our Vision</p>
+    <blockquote class="vision__quote">
+      &ldquo;Innovate, Provide, and Inspire Every Human to Find Happiness Through Natural Healing&rdquo;
+    </blockquote>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section class="contact container">
+    <img class="contact__sprout" src="assets/sprout.svg" alt="" />
+    <h2 class="script contact__title">Get in touch</h2>
+
+    <form class="contact__form" id="contactForm">
+      <img class="contact__water" src="assets/form_water.svg" alt="" aria-hidden="true" />
+
+      <div class="contact__fields">
+        <input class="field" type="text" name="name" placeholder="Your name" required />
+
+        <div class="row">
+          <input class="field" type="email" name="email" placeholder="email" required />
+          <input class="field" type="tel" name="mobile" placeholder="Mobile no" />
+        </div>
+
+        <div class="select-field">
+          <select class="field" name="purpose" aria-label="Purpose to connect">
+            <option value="" selected disabled hidden>Purpose to connect</option>
+            <option>General enquiry</option>
+            <option>Partnership</option>
+            <option>Press</option>
+            <option>Careers</option>
+          </select>
+        </div>
+
+        <div class="textarea-field">
+          <textarea class="field" name="message" maxlength="200" placeholder="Message if any..."></textarea>
+          <span class="count"><span class="count__n">0</span>/200</span>
+        </div>
+
+        <button type="submit" class="submit">Submit</button>
+        <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    &copy; Peshagi 2026. All rights reserved
+  </footer>
+
+  <!-- Supabase client (public anon key is safe to expose; access is locked down
+       by Row-Level Security — inserts only). See supabase/schema.sql. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    /* ====================================================================
+       1) PASTE YOUR SUPABASE PROJECT SETTINGS HERE
+       Supabase dashboard → Project Settings → API:
+         • Project URL   → SUPABASE_URL
+         • anon public key → SUPABASE_ANON_KEY
+       ==================================================================== */
+    var SUPABASE_URL = 'https://pbagupjaykwpuicyhspo.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiYWd1cGpheWt3cHVpY3loc3BvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0MTI5NTgsImV4cCI6MjA5ODk4ODk1OH0.nnYstIilRc_I1Agmc5Zz0RYkOsrqxEoYSqONpzRmbRk';
+    /* ==================================================================== */
+
+    // Live character counter for the message field
+    (function () {
+      var ta = document.querySelector('textarea[name="message"]');
+      var n = document.querySelector('.count__n');
+      if (ta && n) ta.addEventListener('input', function () { n.textContent = ta.value.length; });
+    })();
+
+    // Hero background video — wire the mute + pause controls to it.
+    (function () {
+      var vid = document.querySelector('.hero__bg');
+      if (!vid || !vid.tagName || vid.tagName.toLowerCase() !== 'video') return;
+      var audio = document.querySelector('.hero__audio');
+      if (!audio) return;
+      var muteBtn = audio.querySelector('.icon-btn[aria-label^="Mute"], .icon-btn[aria-label^="Unmute"]');
+      var pauseBtn = audio.querySelector('.icon-btn[aria-label^="Pause"], .icon-btn[aria-label^="Play"]');
+
+      if (muteBtn) muteBtn.addEventListener('click', function () {
+        vid.muted = !vid.muted;
+        muteBtn.setAttribute('aria-label', vid.muted ? 'Unmute audio' : 'Mute audio');
+        muteBtn.classList.toggle('is-off', vid.muted);
+      });
+
+      if (pauseBtn) pauseBtn.addEventListener('click', function () {
+        if (vid.paused) { vid.play(); pauseBtn.setAttribute('aria-label', 'Pause'); }
+        else { vid.pause(); pauseBtn.setAttribute('aria-label', 'Play'); }
+        pauseBtn.classList.toggle('is-off', vid.paused);
+      });
+    })();
+
+    // Submit both forms straight to Supabase, with inline success/error states.
+    (function () {
+      var configured = SUPABASE_URL.indexOf('YOUR-PROJECT') === -1 &&
+                       SUPABASE_ANON_KEY.indexOf('YOUR-ANON') === -1;
+      var sb = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+      function wire(form, statusEl, submit, successMsg) {
+        if (!form || !statusEl) return;
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('[type="submit"]');
+          var label = btn ? btn.textContent : '';
+          statusEl.className = 'form-status';
+          statusEl.textContent = '';
+
+          if (!configured) {
+            statusEl.textContent = 'Form not connected yet — add your Supabase keys in index.html.';
+            statusEl.classList.add('is-error');
+            return;
+          }
+
+          if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+          try {
+            await submit(sb, form.elements);
+            statusEl.textContent = successMsg;
+            statusEl.classList.add('is-success');
+            form.reset();
+            var counter = document.querySelector('.count__n');
+            if (counter) counter.textContent = '0';
+          } catch (err) {
+            console.error(err);
+            statusEl.textContent = 'Something went wrong — please try again.';
+            statusEl.classList.add('is-error');
+          } finally {
+            if (btn) { btn.disabled = false; btn.textContent = label; }
+          }
+        });
+      }
+
+      wire(
+        document.getElementById('notifyForm'),
+        document.getElementById('notifyStatus'),
+        async function (sb, els) {
+          var email = els.email.value.trim().toLowerCase();
+          var res = await sb.from('signups').insert({ email });
+          // 23505 = unique violation → already subscribed, treat as success
+          if (res.error && res.error.code !== '23505') throw res.error;
+        },
+        "You're on the list — we'll email you at launch."
+      );
+
+      wire(
+        document.getElementById('contactForm'),
+        document.getElementById('contactStatus'),
+        async function (sb, els) {
+          var res = await sb.from('contacts').insert({
+            name: els.name.value.trim(),
+            email: els.email.value.trim().toLowerCase(),
+            mobile: els.mobile.value.trim(),
+            purpose: els.purpose.value,
+            message: els.message.value.trim().slice(0, 200)
+          });
+          if (res.error) throw res.error;
+        },
+        'Thanks for reaching out — we’ll be in touch.'
+      );
+    })();
+  </script>
+</body>
+</html>
