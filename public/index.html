@@ -193,25 +193,33 @@
     })();
 
     // Hero background video — wire the mute + pause controls to it.
+    // Buttons mirror the video's REAL state via its events (it starts muted +
+    // autoplaying), so the labels/dim states are correct from first paint.
     (function () {
       var vid = document.querySelector('.hero__bg');
       if (!vid || !vid.tagName || vid.tagName.toLowerCase() !== 'video') return;
       var audio = document.querySelector('.hero__audio');
       if (!audio) return;
-      var muteBtn = audio.querySelector('.icon-btn[aria-label^="Mute"], .icon-btn[aria-label^="Unmute"]');
-      var pauseBtn = audio.querySelector('.icon-btn[aria-label^="Pause"], .icon-btn[aria-label^="Play"]');
+      var btns = audio.querySelectorAll('.icon-btn');
+      var muteBtn = btns[0], pauseBtn = btns[1];
+      if (!muteBtn || !pauseBtn) return;
 
-      if (muteBtn) muteBtn.addEventListener('click', function () {
-        vid.muted = !vid.muted;
+      function syncMute() {
         muteBtn.setAttribute('aria-label', vid.muted ? 'Unmute audio' : 'Mute audio');
         muteBtn.classList.toggle('is-off', vid.muted);
-      });
-
-      if (pauseBtn) pauseBtn.addEventListener('click', function () {
-        if (vid.paused) { vid.play(); pauseBtn.setAttribute('aria-label', 'Pause'); }
-        else { vid.pause(); pauseBtn.setAttribute('aria-label', 'Play'); }
+      }
+      function syncPlay() {
+        pauseBtn.setAttribute('aria-label', vid.paused ? 'Play' : 'Pause');
         pauseBtn.classList.toggle('is-off', vid.paused);
-      });
+      }
+      vid.addEventListener('volumechange', syncMute);
+      vid.addEventListener('play', syncPlay);
+      vid.addEventListener('pause', syncPlay);
+      syncMute();
+      syncPlay();
+
+      muteBtn.addEventListener('click', function () { vid.muted = !vid.muted; });
+      pauseBtn.addEventListener('click', function () { if (vid.paused) { vid.play(); } else { vid.pause(); } });
     })();
 
     // Submit both forms straight to Supabase, with inline success/error states.
