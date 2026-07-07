@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peshagi — Coming Soon</title>
   <meta name="description" content="PESHAGI brings you the essence of Ayurveda, blending ancient wisdom with modern skincare needs." />
+  <link rel="icon" type="image/svg+xml" href="assets/logo_icon.svg" />
 
   <!-- Fonts: Poppins (as in design). Dancing Script is used as a free stand-in
        for the design's "Shotflick Demo" script face. -->
@@ -52,11 +53,13 @@
     </div>
 
     <div class="hero__audio">
-      <button type="button" class="icon-btn" aria-label="Mute audio">
-        <img src="assets/mute_icon.svg" alt="" />
+      <!-- Video starts muted + autoplaying, so the initial icons are
+           volume-off + pause. JS swaps them as state changes. -->
+      <button type="button" class="icon-btn" aria-label="Unmute audio">
+        <img src="assets/ic_volume_off.svg" alt="" />
       </button>
       <button type="button" class="icon-btn" aria-label="Pause">
-        <img src="assets/pause_icon.svg" alt="" />
+        <img src="assets/ic_pause.svg" alt="" />
       </button>
     </div>
   </header>
@@ -203,14 +206,18 @@
       var btns = audio.querySelectorAll('.icon-btn');
       var muteBtn = btns[0], pauseBtn = btns[1];
       if (!muteBtn || !pauseBtn) return;
+      var muteImg = muteBtn.querySelector('img');
+      var playImg = pauseBtn.querySelector('img');
 
       function syncMute() {
         muteBtn.setAttribute('aria-label', vid.muted ? 'Unmute audio' : 'Mute audio');
         muteBtn.classList.toggle('is-off', vid.muted);
+        if (muteImg) muteImg.src = vid.muted ? 'assets/ic_volume_off.svg' : 'assets/ic_volume_on.svg';
       }
       function syncPlay() {
         pauseBtn.setAttribute('aria-label', vid.paused ? 'Play' : 'Pause');
         pauseBtn.classList.toggle('is-off', vid.paused);
+        if (playImg) playImg.src = vid.paused ? 'assets/ic_play.svg' : 'assets/ic_pause.svg';
       }
       vid.addEventListener('volumechange', syncMute);
       vid.addEventListener('play', syncPlay);
