@@ -51,10 +51,10 @@
 
       <form class="notify" id="notifyForm">
         <input type="email" name="email" placeholder="Email address" aria-label="Email address" required />
-        <button type="submit">Join Peshagi</button>
+        <button type="submit">Notify Me</button>
       </form>
 
-      <p class="hero__note">Invite me to the Brand Launch</p>
+      <p class="hero__note">Notify me when website is launched.</p>
       <p class="form-status" id="notifyStatus" role="status" aria-live="polite"></p>
     </div>
 
@@ -118,7 +118,12 @@
     <img class="about__leaf" src="assets/leaf_divider.svg" alt="" />
 
     <div class="about__right">
-      <h2 class="about__headline">Innovate, Provide, and Inspire Every Human to Find Happiness Through Natural Healing</h2>
+      <h2 class="about__headline">
+        <video class="about__headline__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="assets/hero-video-new-v2.mp4" type="video/mp4" />
+        </video>
+        <span class="about__headline__fill">Innovate, Provide, and Inspire Every Human to Find Happiness Through Natural Healing</span>
+      </h2>
     </div>
   </section>
 
@@ -144,7 +149,10 @@
     <h2 class="script contact__title">Get in touch</h2>
 
     <form class="contact__form" id="contactForm">
-      <img class="contact__water" src="assets/form_water.svg" alt="" aria-hidden="true" />
+      <picture class="contact__water" aria-hidden="true">
+        <source srcset="assets/form_water_mobile.svg" media="(max-width: 600px)" />
+        <img src="assets/form_water.svg" alt="" />
+      </picture>
 
       <div class="contact__fields">
         <input class="field" type="text" name="name" placeholder="Your name" required />
@@ -169,7 +177,10 @@
           <span class="count"><span class="count__n">0</span>/200</span>
         </div>
 
-        <button type="submit" class="submit">Submit</button>
+        <button type="submit" class="submit">
+          <img class="submit__water" src="assets/submit_water.svg" alt="" aria-hidden="true" />
+          <span class="submit__label">Submit</span>
+        </button>
         <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
       </div>
     </form>
@@ -214,6 +225,31 @@
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();   // set correct state on load (e.g. reload mid-page)
+    })();
+
+    // About headline: video-filled letters that reveal word-by-word on scroll.
+    (function () {
+      var headline = document.querySelector('.about__headline');
+      var fill = headline && headline.querySelector('.about__headline__fill');
+      if (!fill) return;
+      var words = fill.textContent.trim().split(/\s+/);
+      fill.textContent = '';
+      words.forEach(function (w, i) {
+        var span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = w;
+        span.style.transitionDelay = (i * 0.1) + 's';
+        fill.appendChild(span);
+        if (i < words.length - 1) fill.appendChild(document.createTextNode(' '));
+      });
+      headline.classList.add('js-anim');   // now the words start hidden
+      if (!('IntersectionObserver' in window)) { headline.classList.add('is-revealed'); return; }
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { headline.classList.add('is-revealed'); obs.disconnect(); }
+        });
+      }, { threshold: 0.2 });
+      io.observe(headline);
     })();
 
     // Video section: paused by default with a play button. On play, hide the
@@ -276,7 +312,8 @@
         form.addEventListener('submit', async function (e) {
           e.preventDefault();
           var btn = form.querySelector('[type="submit"]');
-          var label = btn ? btn.textContent : '';
+          var labelEl = btn ? (btn.querySelector('.submit__label') || btn) : null;
+          var label = labelEl ? labelEl.textContent : '';
           statusEl.className = 'form-status';
           statusEl.textContent = '';
 
@@ -286,7 +323,7 @@
             return;
           }
 
-          if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+          if (btn) { btn.disabled = true; labelEl.textContent = 'Sending…'; }
           try {
             await submit(sb, form.elements);
             statusEl.textContent = successMsg;
@@ -299,7 +336,7 @@
             statusEl.textContent = 'Something went wrong — please try again.';
             statusEl.classList.add('is-error');
           } finally {
-            if (btn) { btn.disabled = false; btn.textContent = label; }
+            if (btn) { btn.disabled = false; labelEl.textContent = label; }
           }
         });
       }

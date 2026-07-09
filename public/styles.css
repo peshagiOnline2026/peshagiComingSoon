@@ -6,14 +6,19 @@
    ===================================================================== */
 
 :root {
-  --green:        #093b35;   /* brand dark green (headings, footer, logo) */
-  --green-deep:   #003c35;   /* contact form card */
-  --green-ink:    #0a3b35;   /* large "HEALING…" headline */
-  --overlay:      rgba(9, 59, 53, 0.28);
-  --muted:        #7a7a7a;   /* placeholder / helper text */
-  --field:        rgba(255, 255, 255, 0.86);
-  --max:          1920px;
-  --pad:          clamp(20px, 6.25vw, 120px);  /* 120px gutters at 1920 */
+  --green: #093b35;
+  /* brand dark green (headings, footer, logo) */
+  --green-deep: #003c35;
+  /* contact form card */
+  --green-ink: #0a3b35;
+  /* large "HEALING…" headline */
+  --overlay: rgba(9, 59, 53, 0.28);
+  --muted: #7a7a7a;
+  /* placeholder / helper text */
+  --field: rgba(255, 255, 255, 0.86);
+  --max: 1920px;
+  --pad: clamp(20px, 6.25vw, 120px);
+  /* 120px gutters at 1920 */
 }
 
 /* Script face used in the design ("Shotflick Demo"), self-hosted. */
@@ -25,9 +30,15 @@
   font-display: swap;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   font-family: "Poppins", system-ui, sans-serif;
@@ -37,7 +48,10 @@ body {
   overflow-x: hidden;
 }
 
-img { display: block; max-width: 100%; }
+img {
+  display: block;
+  max-width: 100%;
+}
 
 .container {
   width: 100%;
@@ -72,6 +86,7 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
   z-index: 0;
 }
+
 /* Brand-green overlay over the video for text legibility. */
 .hero__overlay {
   position: absolute;
@@ -91,16 +106,19 @@ img { display: block; max-width: 100%; }
   background: transparent;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
 .site-header__inner {
   display: flex;
   align-items: center;
   padding-block: clamp(16px, 2.6vw, 34px);
   transition: padding 0.3s ease;
 }
+
 .site-header.is-scrolled {
   background: #fff;
   box-shadow: 0 6px 24px rgba(9, 59, 53, 0.10);
 }
+
 .site-header.is-scrolled .site-header__inner {
   padding-block: clamp(12px, 1.8vw, 20px);
 }
@@ -110,12 +128,29 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 12px;
 }
-.logo__icon { height: clamp(46px, 3.5vw, 66px); width: auto; }
-.logo__word { height: clamp(34px, 2.6vw, 50px); width: auto; }
+
+.logo__icon {
+  height: clamp(46px, 3.5vw, 66px);
+  width: auto;
+}
+
+.logo__word {
+  height: clamp(34px, 2.6vw, 50px);
+  width: auto;
+}
+
 /* colour swap: light logo by default, dark logo once scrolled */
-.logo__img--dark { display: none; }
-.site-header.is-scrolled .logo__img--light { display: none; }
-.site-header.is-scrolled .logo__img--dark { display: block; }
+.logo__img--dark {
+  display: none;
+}
+
+.site-header.is-scrolled .logo__img--light {
+  display: none;
+}
+
+.site-header.is-scrolled .logo__img--dark {
+  display: block;
+}
 
 .hero__content {
   position: relative;
@@ -154,10 +189,10 @@ img { display: block; max-width: 100%; }
   width: min(602px, 100%);
   height: 60px;
   background: #fff;
-  border-radius: 8px;
-  padding: 2px 2px 2px 22px;
-  box-shadow: 0 14px 40px rgba(9, 59, 53, 0.18);
+  border-radius: 6px;
+  padding: 2px 2px 2px 20px;
 }
+
 .notify input {
   flex: 1;
   min-width: 0;
@@ -168,13 +203,17 @@ img { display: block; max-width: 100%; }
   color: #333;
   outline: none;
 }
-.notify input::placeholder { color: var(--muted); }
+
+.notify input::placeholder {
+  color: var(--muted);
+}
+
 .notify button {
   flex: none;
-  width: clamp(120px, 12vw, 168px);
+  width: 168px;
   height: 56px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 4px;
   background: var(--green);
   color: #fff;
   font: 500 14px "Poppins", sans-serif;
@@ -182,7 +221,10 @@ img { display: block; max-width: 100%; }
   cursor: pointer;
   transition: background 0.2s ease;
 }
-.notify button:hover { background: #0c4d45; }
+
+.notify button:hover {
+  background: #0c4d45;
+}
 
 .hero__note {
   margin-top: clamp(14px, 1.6vw, 22px);
@@ -198,6 +240,7 @@ img { display: block; max-width: 100%; }
   display: flex;
   gap: 24px;
 }
+
 .icon-btn {
   width: 40px;
   height: 40px;
@@ -208,9 +251,20 @@ img { display: block; max-width: 100%; }
   opacity: 0.9;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.icon-btn:hover { opacity: 1; transform: translateY(-1px); }
-.icon-btn.is-off { opacity: 0.45; }
-.icon-btn img { width: 40px; height: 40px; }
+
+.icon-btn:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.icon-btn.is-off {
+  opacity: 0.45;
+}
+
+.icon-btn img {
+  width: 40px;
+  height: 40px;
+}
 
 /* ============================== ABOUT ============================== */
 .about {
@@ -224,7 +278,10 @@ img { display: block; max-width: 100%; }
   padding-top: clamp(64px, 8vw, 150px);
   padding-bottom: clamp(40px, 5vw, 90px);
 }
-.about__left { grid-area: left; }
+
+.about__left {
+  grid-area: left;
+}
 
 .about__script {
   font-size: clamp(2.4rem, 4.6vw, 80px);
@@ -237,16 +294,63 @@ img { display: block; max-width: 100%; }
   color: #111;
   margin-bottom: 16px;
 }
-.about__text p:last-child { margin-bottom: 0; }
 
-.about__right { grid-area: right; padding-top: clamp(30px, 4vw, 70px); }
+.about__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Offset the right column by the height of the "Relating to us" heading
+   (line-height 1.1 + its margin) so the vision text lines up with about__text. */
+.about__right {
+  grid-area: right;
+  padding-top: calc(clamp(2.4rem, 4.6vw, 80px) * 1.1 + clamp(18px, 2vw, 34px));
+}
+
 .about__headline {
+  position: relative;
+  isolation: isolate;
+  /* contain the blend to this box */
+  overflow: hidden;
+  /* clip the video so its edges can't peek */
   font-weight: 700;
   font-size: clamp(2.6rem, 5.4vw, 88px);
   line-height: 1.04;
   letter-spacing: -0.01em;
-  color: var(--green-ink);
   text-transform: uppercase;
+}
+
+/* hero video playing behind the letters */
+.about__headline__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  /* darken the light hero footage so the video-filled letters stay legible
+     on the white page (screen blend keeps the non-text area white) */
+  filter: brightness(0.5) contrast(1.15) saturate(1.15);
+}
+
+/* white knockout layer: screen blend => text shows the video, rest stays white */
+.about__headline__fill {
+  position: relative;
+  z-index: 1;
+  display: block;
+  background: #fff;
+  color: #000;
+  mix-blend-mode: screen;
+}
+
+/* word-by-word reveal — only active once JS runs (words stay visible without JS) */
+.about__headline.js-anim .word {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.about__headline.js-anim.is-revealed .word {
+  opacity: 1;
 }
 
 /* ============================= LEAF DIVIDER ============================= */
@@ -259,11 +363,15 @@ img { display: block; max-width: 100%; }
 }
 
 /* ============================== VIDEO ============================== */
-.video { padding-bottom: clamp(48px, 6vw, 96px); }
+.video {
+  padding-bottom: clamp(48px, 6vw, 96px);
+}
+
 .video__frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 1680 / 950;
+  aspect-ratio: 1920 / 864;
+  /* matches the clip's real proportions */
   border-radius: 12px;
   overflow: hidden;
   background: url("assets/1 1.png") center / cover no-repeat;
@@ -271,7 +379,11 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
 }
-.video__media {                        /* fills the frame; user-played */
+
+.video__media {
+  /* frame ratio == clip ratio, so this
+                                          shows the whole video uncropped and
+                                          fills the poster cleanly */
   position: absolute;
   inset: 0;
   width: 100%;
@@ -279,6 +391,7 @@ img { display: block; max-width: 100%; }
   object-fit: cover;
   z-index: 0;
 }
+
 /* Dark scrim + play button shown while paused; both clear once playing so the
    native controls (mute/unmute, seek, fullscreen) are unobstructed. */
 .video__frame::before {
@@ -287,10 +400,15 @@ img { display: block; max-width: 100%; }
   inset: 0;
   z-index: 1;
   background: rgba(0, 0, 0, 0.28);
-  pointer-events: none;               /* never blocks the native controls */
+  pointer-events: none;
+  /* never blocks the native controls */
   transition: opacity 0.25s ease;
 }
-.video__frame.is-playing::before { opacity: 0; }
+
+.video__frame.is-playing::before {
+  opacity: 0;
+}
+
 .video__play {
   position: relative;
   z-index: 2;
@@ -301,19 +419,32 @@ img { display: block; max-width: 100%; }
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-.video__play:hover { transform: scale(1.06); }
-.video__play img { display: block; width: clamp(58px, 6vw, 90px); height: auto; }
-.video__frame.is-playing .video__play { display: none; }
+
+.video__play:hover {
+  transform: scale(1.06);
+}
+
+.video__play img {
+  display: block;
+  width: clamp(58px, 6vw, 90px);
+  height: auto;
+}
+
+.video__frame.is-playing .video__play {
+  display: none;
+}
 
 /* ============================== VISION ============================== */
 .vision {
   text-align: center;
   padding-block: clamp(48px, 7vw, 110px);
 }
+
 .vision__label {
   font-size: clamp(2rem, 3.4vw, 54px);
   margin-bottom: clamp(14px, 1.8vw, 26px);
 }
+
 .vision__quote {
   max-width: 1000px;
   margin: 0 auto;
@@ -326,11 +457,13 @@ img { display: block; max-width: 100%; }
   text-align: center;
   padding-bottom: clamp(56px, 6vw, 120px);
 }
+
 .contact__sprout {
   width: clamp(34px, 3vw, 47px);
   height: auto;
   margin: 0 auto clamp(12px, 1.6vw, 22px);
 }
+
 .contact__title {
   font-size: clamp(2rem, 3.6vw, 60px);
   margin-bottom: clamp(24px, 3vw, 46px);
@@ -345,15 +478,20 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   padding: clamp(40px, 5vw, 96px) clamp(24px, 4vw, 60px);
 }
+
 .contact__water {
   position: absolute;
   inset: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.contact__water img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45;
-  pointer-events: none;
 }
+
 .contact__fields {
   position: relative;
   z-index: 1;
@@ -376,16 +514,29 @@ img { display: block; max-width: 100%; }
   color: #333;
   outline: none;
 }
-.field::placeholder { color: var(--muted); }
-.field:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45); }
+
+.field::placeholder {
+  color: var(--muted);
+}
+
+.field:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
+}
 
 .row {
   display: flex;
   gap: clamp(14px, 2vw, 28px);
 }
-.row .field { flex: 1; min-width: 0; }
 
-.select-field { position: relative; }
+.row .field {
+  flex: 1;
+  min-width: 0;
+}
+
+.select-field {
+  position: relative;
+}
+
 .select-field .field {
   appearance: none;
   -webkit-appearance: none;
@@ -393,9 +544,14 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
   cursor: pointer;
 }
+
 .select-field .field:valid,
-.select-field .field:has(option:checked:not([disabled])) { color: #333; }
-.select-field::after {                 /* dropdown caret */
+.select-field .field:has(option:checked:not([disabled])) {
+  color: #333;
+}
+
+.select-field::after {
+  /* dropdown caret */
   content: "";
   position: absolute;
   right: 18px;
@@ -407,13 +563,19 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
-.textarea-field { position: relative; }
+.textarea-field {
+  position: relative;
+}
+
 .textarea-field .field {
-  height: 52px;                        /* match the other fields */
-  padding: 14px 40px 14px 16px;        /* right pad clears the count badge */
+  height: 84px;
+  /* match the other fields */
+  padding: 14px 40px 14px 16px;
+  /* right pad clears the count badge */
   line-height: 1.5;
   resize: none;
 }
+
 .count {
   position: absolute;
   right: 12px;
@@ -424,6 +586,12 @@ img { display: block; max-width: 100%; }
 
 .submit {
   align-self: center;
+  position: relative;
+  overflow: hidden;
+  /* keep the water within the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 232px;
   max-width: 100%;
   height: 40px;
@@ -436,9 +604,36 @@ img { display: block; max-width: 100%; }
   cursor: pointer;
   transition: background 0.2s ease;
 }
-.submit:hover { background: #ececec; }
-.submit:disabled { opacity: 0.7; cursor: default; }
-.notify button:disabled { opacity: 0.7; cursor: default; }
+
+.submit__water {
+  /* decorative graphic, contained, behind the label */
+  position: absolute;
+  inset: 0;
+  width: 48%;
+  height: 108%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.submit__label {
+  position: relative;
+  z-index: 1;
+}
+
+.submit:hover {
+  background: #ececec;
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.notify button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
 
 /* Inline form feedback — both forms sit on dark backgrounds, so use light tints */
 .form-status {
@@ -447,8 +642,14 @@ img { display: block; max-width: 100%; }
   font: 400 14px "Poppins", sans-serif;
   text-align: center;
 }
-.form-status.is-success { color: #8fe3cd; }
-.form-status.is-error   { color: #ffb1a3; }
+
+.form-status.is-success {
+  color: #8fe3cd;
+}
+
+.form-status.is-error {
+  color: #ffb1a3;
+}
 
 /* ============================== FOOTER ============================== */
 .footer {
@@ -474,48 +675,156 @@ img { display: block; max-width: 100%; }
       "leaf"
       "right";
   }
-  .about__right { padding-top: 3rem; }
-  .about__leaf { margin-block: clamp(20px, 5vw, 40px) 0; }
-  .about__headline { line-height: 1.06; }
+
+  .about__right {
+    padding-top: 3rem;
+  }
+
+  .about__leaf {
+    margin-block: clamp(20px, 5vw, 40px) 0;
+  }
+
+  .about__headline {
+    line-height: 1.06;
+  }
 }
 
 /* Mobile — matches the Figma mobile frame (393px):
    centered about content, single-column form, no audio controls. */
 @media (max-width: 600px) {
+
   /* hero */
-  .hero { min-height: min(769px, 92vh); }
-  .hero__title { font-size: 34px; letter-spacing: 0.3px; }
-  .hero__sub { font-size: 14px; max-width: 340px; margin-top: 20px; }
-  .hero__note { font-size: 14px; margin-top: 18px; }
-  .hero__audio { display: none; }
-  .logo__icon { height: 42px; }
-  .logo__word { height: 31px; }
-  .notify { height: 50px; padding: 2px 2px 2px 16px; }
-  .notify input { font-size: 14px; }
-  .notify button { height: 46px; width: 107px; font-size: 14px; }
+  .hero {
+    min-height: min(769px, 92vh);
+  }
+
+  .hero__title {
+    font-size: 34px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero__sub {
+    font-size: 14px;
+    max-width: 340px;
+    margin-top: 20px;
+  }
+
+  .hero__note {
+    font-size: 14px;
+    margin-top: 18px;
+  }
+
+  .hero__audio {
+    display: none;
+  }
+
+  .logo__icon {
+    height: 42px;
+  }
+
+  .logo__word {
+    height: 31px;
+  }
+
+  .notify {
+    height: 50px;
+    padding: 2px 2px 2px 16px;
+  }
+
+  .notify input {
+    font-size: 14px;
+  }
+
+  .notify button {
+    height: 46px;
+    width: 107px;
+    font-size: 14px;
+  }
 
   /* about — centered */
-  .about { text-align: center; padding-top: clamp(48px, 12vw, 84px); }
-  .about__script { font-size: clamp(42px, 15vw, 60px); margin-bottom: 22px; }
-  .about__text p { font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
-  .about__leaf { width: 74px; margin-block: clamp(24px, 8vw, 40px) clamp(28px, 8vw, 44px); }
-  .about__right { padding-top: 3rem; }
+  .about {
+    text-align: center;
+    padding-top: clamp(48px, 12vw, 84px);
+  }
+
+  .about__script {
+    font-size: clamp(42px, 15vw, 60px);
+    margin-bottom: 32px;
+    margin-top: 40px;
+  }
+
+  .about__text p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .about__leaf {
+    width: 74px;
+    margin-block: clamp(24px, 8vw, 40px) clamp(28px, 8vw, 44px);
+  }
+
+  .about__right {
+    padding-top: 3rem;
+  }
+
   /* Grow to fill the full available width on mobile.
      Gutters are 6.25vw/side, so usable width is ~87.5vw at any mobile size;
      "HEALING IS" (~5.6em in Poppins Bold) fills that at ~15vw. */
-  .about__headline { font-size: 9vw; line-height: 1.04; }
+  .about__headline {
+    font-size: 9vw;
+    line-height: 1.04;
+  }
 
   /* video */
-  .video { padding-bottom: 44px; }
+  .video {
+    padding-bottom: 70px;
+  }
+
+  .submit__water {
+
+    width: 100%;
+    height: 100%;
+
+  }
 
   /* contact */
-  .contact__sprout { width: 40px; }
-  .contact__title { font-size: clamp(42px, 15vw, 60px); margin-bottom: 28px; }
-  .contact__form { padding: 44px 20px; }
-  .row { flex-direction: column; gap: 16px; }
+  .contact__sprout {
+    width: 40px;
+  }
+
+  .contact__title {
+    font-size: clamp(42px, 15vw, 60px);
+    margin-bottom: 28px;
+  }
+
+  .contact__form {
+    padding: 24px 20px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
   /* column stack: don't let flex-basis:0 collapse the field heights */
-  .row .field { flex: 0 0 auto; }
-  .field { height: 44px; font-size: 14px; }
-  .textarea-field .field { height: 44px; padding: 11px 40px 11px 16px; }
-  .submit { width: 135px; margin-top: 6px; }
+  .row .field {
+    flex: 0 0 auto;
+  }
+
+  .field {
+    height: 44px;
+    font-size: 14px;
+    background: #fff;
+  }
+
+  .textarea-field .field {
+    height: 102px;
+    padding: 11px 40px 11px 16px;
+  }
+
+  .submit {
+    width: 135px;
+    margin-top: 6px;
+  }
 }
