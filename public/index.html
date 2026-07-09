@@ -125,11 +125,15 @@
   <!-- ============================= VIDEO ============================= -->
   <section class="video container">
     <div class="video__frame">
-      <!-- Looping cover video (muted so it can autoplay), same as the hero. -->
-      <video class="video__media" autoplay muted loop playsinline preload="auto"
+      <!-- Starts paused (poster + play button). On play: hide the button and
+           turn on the browser's native controls (mute/unmute, seek, fullscreen). -->
+      <video class="video__media" playsinline preload="metadata"
              poster="assets/1%201.png">
         <source src="assets/video-section-new.mp4" type="video/mp4" />
       </video>
+      <button type="button" class="video__play" aria-label="Play video">
+        <img src="assets/Polygon 20.svg" alt="" />
+      </button>
     </div>
   </section>
 
@@ -210,6 +214,21 @@
       }
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();   // set correct state on load (e.g. reload mid-page)
+    })();
+
+    // Video section: paused by default with a play button. On play, hide the
+    // button + scrim and show native controls; on pause, bring them back.
+    (function () {
+      var frame = document.querySelector('.video__frame');
+      if (!frame) return;
+      var vid = frame.querySelector('.video__media');
+      var play = frame.querySelector('.video__play');
+      if (!vid || !play) return;
+
+      play.addEventListener('click', function () { vid.play(); });
+      vid.addEventListener('play',  function () { frame.classList.add('is-playing'); vid.controls = true; });
+      vid.addEventListener('pause', function () { frame.classList.remove('is-playing'); vid.controls = false; });
+      vid.addEventListener('ended', function () { frame.classList.remove('is-playing'); vid.controls = false; });
     })();
 
     // Hero background video — wire the mute + pause controls to it.
