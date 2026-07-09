@@ -219,11 +219,18 @@ img {
   font: 500 14px "Poppins", sans-serif;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .notify button:hover {
   background: #0c4d45;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(9, 59, 53, 0.28);
+}
+
+.notify button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(9, 59, 53, 0.22);
 }
 
 .hero__note {
@@ -492,6 +499,42 @@ img {
   object-fit: cover;
 }
 
+/* pulsing glow on the decorative water line graphics (rose #C79084):
+   the thin lines brighten + bloom, then dim — visible on any background. */
+@keyframes water-glow {
+  0%, 100% {
+    opacity: 0.5;
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.6) drop-shadow(0 0 9px rgba(235, 150, 120, 0.85));
+  }
+}
+.contact__water img {
+  animation: water-glow 2.6s ease-in-out infinite;
+  will-change: opacity, filter;
+}
+/* white button: brightening washes the rose out, so deepen it instead */
+@keyframes submit-glow {
+  0%, 100% {
+    opacity: 0.55;
+    filter: saturate(0.9);
+  }
+  50% {
+    opacity: 1;
+    filter: saturate(1.7) drop-shadow(0 0 5px rgba(199, 144, 132, 0.9));
+  }
+}
+.submit__water {
+  animation: submit-glow 4s ease-in-out infinite;
+  will-change: opacity, filter;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact__water img,
+  .submit__water { animation: none; }
+}
+
 .contact__fields {
   position: relative;
   z-index: 1;
@@ -602,7 +645,7 @@ img {
   color: #000;
   font: 400 14px "Poppins", sans-serif;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .submit__water {
@@ -623,6 +666,13 @@ img {
 
 .submit:hover {
   background: #ececec;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(9, 59, 53, 0.18);
+}
+
+.submit:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(9, 59, 53, 0.14);
 }
 
 .submit:disabled {
