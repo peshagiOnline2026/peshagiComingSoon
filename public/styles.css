@@ -219,17 +219,22 @@ img {
   font: 500 14px "Poppins", sans-serif;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, width 0.2s ease, height 0.2s ease,
+              margin 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* on hover: grow 3px on every side (stays centered) */
 .notify button:hover {
+  width: 174px;                /* 168 + 3px each horizontal side */
+  height: 62px;                /* 56 + 3px top + 3px bottom (align-items:center keeps it centered) */
+  margin-right: -3px;          /* extend the right edge 3px too */
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   background: #0c4d45;
-  transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(9, 59, 53, 0.28);
 }
 
 .notify button:active {
-  transform: translateY(0);
   box-shadow: 0 3px 10px rgba(9, 59, 53, 0.22);
 }
 
