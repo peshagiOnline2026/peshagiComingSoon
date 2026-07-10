@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peshagi — Coming Soon</title>
   <meta name="description" content="PESHAGI brings you the essence of Ayurveda, blending ancient wisdom with modern skincare needs." />
-  <link rel="icon" type="image/svg+xml" href="assets/logo_icon.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo_icon_dark.svg" />
 
   <!-- Fonts: Poppins (body, from Google) + Shotflick Demo (script headings,
        self-hosted, see @font-face in styles.css). -->
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
 
@@ -132,8 +132,7 @@
     <div class="video__frame">
       <!-- Starts paused (poster + play button). On play: hide the button and
            turn on the browser's native controls (mute/unmute, seek, fullscreen). -->
-      <video class="video__media" playsinline preload="metadata"
-             poster="assets/1%201.png">
+      <video class="video__media" playsinline preload="metadata">
         <source src="assets/video-element-new.mp4" type="video/mp4" />
       </video>
       <button type="button" class="video__play" aria-label="Play video">
@@ -212,37 +211,61 @@
       if (ta && n) ta.addEventListener('input', function () { n.textContent = ta.value.length; });
     })();
 
-    // Fixed header: solid white + dark logo once the user scrolls.
+    // Fixed header: transparent over the hero, turns solid white + dark logo
+    // once the hero has scrolled up past the header (i.e. after the hero).
     (function () {
       var header = document.getElementById('siteHeader');
-      if (!header) return;
+      var hero = document.querySelector('.hero');
+      if (!header || !hero) return;
       var applied = null;
       function onScroll() {
-        var scrolled = window.scrollY > 40;
+        // solid once the hero's bottom reaches the header's bottom edge
+        var scrolled = hero.getBoundingClientRect().bottom <= header.offsetHeight;
         if (scrolled === applied) return;   // only act on state change
         applied = scrolled;
         header.classList.toggle('is-scrolled', scrolled);
       }
       window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
       onScroll();   // set correct state on load (e.g. reload mid-page)
     })();
 
-    // About headline: video-filled letters that reveal word-by-word on scroll.
+    // Hero video: cross-fade it in over the poster once its first frame is
+    // ready, so there's no hard poster->video jump on load.
+    (function () {
+      var v = document.querySelector('.hero__bg');
+      var hero = v && v.closest('.hero');
+      if (!hero) return;
+      hero.classList.add('js-fade');   // arms the fade (no-JS keeps video visible)
+      function reveal() { v.classList.add('is-ready'); }
+      if (v.readyState >= 2) reveal();   // first frame already decoded
+      v.addEventListener('loadeddata', reveal);
+      v.addEventListener('canplay', reveal);
+      v.addEventListener('playing', reveal);
+    })();
+
+    // About headline: video-filled letters that type in one-by-one on scroll.
     (function () {
       var headline = document.querySelector('.about__headline');
       var fill = headline && headline.querySelector('.about__headline__fill');
       if (!fill) return;
-      var words = fill.textContent.trim().split(/\s+/);
+      var text = fill.textContent.trim();
       fill.textContent = '';
-      words.forEach(function (w, i) {
+      var step = 0.04;   // seconds between letters
+      var i = 0;
+      for (; i < text.length; i++) {
+        var ch = text.charAt(i);
+        if (ch === ' ') {                    // real space => keeps word wrapping natural
+          fill.appendChild(document.createTextNode(' '));
+          continue;
+        }
         var span = document.createElement('span');
-        span.className = 'word';
-        span.textContent = w;
-        span.style.transitionDelay = (i * 0.1) + 's';
+        span.className = 'char';
+        span.textContent = ch;
+        span.style.transitionDelay = (i * step) + 's';
         fill.appendChild(span);
-        if (i < words.length - 1) fill.appendChild(document.createTextNode(' '));
-      });
-      headline.classList.add('js-anim');   // now the words start hidden
+      }
+      headline.classList.add('js-anim');   // now the letters start hidden
       if (!('IntersectionObserver' in window)) { headline.classList.add('is-revealed'); return; }
       var io = new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (e) {

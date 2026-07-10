@@ -72,9 +72,21 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: clamp(720px, 52vw, 1000px);
+  min-height: 100vh;
+  min-height: 100svh;                  /* fill exactly one screen */
   overflow: hidden;
   color: #fff;
+}
+
+/* Poster still shown underneath the video so there's never a blank/flash
+   while it buffers; the video cross-fades over it once its first frame is
+   ready (see .hero.js-fade rules + the reveal script). */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("assets/img_BG.png") center / cover no-repeat;
 }
 
 /* Hero backdrop — looping video, cover-fit. */
@@ -85,6 +97,17 @@ img {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+
+/* Cross-fade the video in over the poster (only when JS is running, so a
+   no-JS page keeps the video visible from the start). */
+.hero.js-fade .hero__bg {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero.js-fade .hero__bg.is-ready {
+  opacity: 1;
 }
 
 /* Brand-green overlay over the video for text legibility. */
@@ -116,7 +139,7 @@ img {
 
 .site-header.is-scrolled {
   background: #fff;
-  box-shadow: 0 6px 24px rgba(9, 59, 53, 0.10);
+  /* box-shadow: 0 6px 24px rgba(9, 59, 53, 0.10); */
 }
 
 .site-header.is-scrolled .site-header__inner {
@@ -219,23 +242,17 @@ img {
   font: 500 14px "Poppins", sans-serif;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: background 0.2s ease, width 0.2s ease, height 0.2s ease,
-              margin 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* on hover: grow 3px on every side (stays centered) */
+/* on hover: nudge north-east (up + forward) — same size, curves intact */
 .notify button:hover {
-  width: 174px;                /* 168 + 3px each horizontal side */
-  height: 62px;                /* 56 + 3px top + 3px bottom (align-items:center keeps it centered) */
-  margin-right: -3px;          /* extend the right edge 3px too */
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
   background: #0c4d45;
-  box-shadow: 0 8px 20px rgba(9, 59, 53, 0.28);
+  transform: translate(3px, -3px);
 }
 
 .notify button:active {
-  box-shadow: 0 3px 10px rgba(9, 59, 53, 0.22);
+  transform: translate(1px, -1px);
 }
 
 .hero__note {
@@ -284,7 +301,7 @@ img {
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "left right"
-    "leaf leaf";
+    "leaf .";
   column-gap: clamp(40px, 6vw, 120px);
   align-items: start;
   padding-top: clamp(64px, 8vw, 150px);
@@ -355,14 +372,23 @@ img {
   mix-blend-mode: screen;
 }
 
-/* word-by-word reveal — only active once JS runs (words stay visible without JS) */
-.about__headline.js-anim .word {
+/* typewriter reveal — letters type in one-by-one; only active once JS runs
+   (letters stay visible without JS) */
+.about__headline.js-anim .char {
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.05s linear;
 }
 
-.about__headline.js-anim.is-revealed .word {
+.about__headline.js-anim.is-revealed .char {
   opacity: 1;
+}
+
+/* respect users who prefer no motion — show the full line at once */
+@media (prefers-reduced-motion: reduce) {
+  .about__headline.js-anim .char {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 /* ============================= LEAF DIVIDER ============================= */
@@ -386,7 +412,6 @@ img {
   /* matches the clip's real proportions */
   border-radius: 12px;
   overflow: hidden;
-  background: url("assets/1 1.png") center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -593,7 +618,6 @@ img {
   cursor: pointer;
 }
 
-.select-field .field:valid,
 .select-field .field:has(option:checked:not([disabled])) {
   color: #333;
 }
@@ -671,13 +695,11 @@ img {
 
 .submit:hover {
   background: #ececec;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(9, 59, 53, 0.18);
+  transform: translate(3px, -3px);
 }
 
 .submit:active {
-  transform: translateY(0);
-  box-shadow: 0 3px 10px rgba(9, 59, 53, 0.14);
+  transform: translate(1px, -1px);
 }
 
 .submit:disabled {
@@ -750,7 +772,7 @@ img {
 
   /* hero */
   .hero {
-    min-height: min(769px, 92vh);
+    min-height: 100svh;
   }
 
   .hero__title {
