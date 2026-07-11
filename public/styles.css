@@ -233,6 +233,12 @@ img {
 
 .notify button {
   flex: none;
+  position: relative;
+  overflow: hidden;
+  /* keep the water within the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 168px;
   height: 56px;
   border: 0;
@@ -253,6 +259,11 @@ img {
 
 .notify button:active {
   transform: translate(1px, -1px);
+}
+
+/* wider water graphic on the Join Peshagi button (desktop) */
+.notify button .submit__water {
+  width: 85%;
 }
 
 .hero__note {
@@ -863,6 +874,10 @@ img {
     width: 100%;
     height: 100%;
 
+  }
+
+  .notify button .submit__water {
+    width: 100%;
   }
 
   /* contact */
