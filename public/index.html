@@ -32,11 +32,11 @@
 
   <!-- ============================= HERO ============================= -->
   <section class="hero">
-    <!-- Looping background video (muted so it can autoplay). img_BG.png is the
-         poster shown while it loads / if video is unavailable. The green
+    <!-- Looping background video (muted so it can autoplay). The green
          overlay below keeps the hero text legible. -->
     <video class="hero__bg" autoplay muted loop playsinline preload="auto"
-           poster="assets/img_BG.png" aria-hidden="true">
+           aria-hidden="true">
+      <source src="assets/hero-new-v2.webm" type="video/webm" />
       <source src="assets/hero-video-new-v2.mp4" type="video/mp4" />
     </video>
     <div class="hero__overlay" aria-hidden="true"></div>
@@ -123,6 +123,7 @@
     <div class="about__right">
       <h2 class="about__headline">
         <video class="about__headline__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="assets/hero-new-v2.webm" type="video/webm" />
           <source src="assets/hero-video-new-v2.mp4" type="video/mp4" />
         </video>
         <span class="about__headline__fill">Innovate, Provide, and Inspire Every Human to Find Happiness Through Natural Healing</span>
@@ -133,8 +134,9 @@
   <!-- ============================= VIDEO ============================= -->
   <section class="video container">
     <div class="video__frame">
-      <!-- Starts paused (poster + play button). On play: hide the button and
-           turn on the browser's native controls (mute/unmute, seek, fullscreen). -->
+      <!-- Starts paused (play button overlay). On play: hide the button and
+           turn on the browser's native controls (mute/unmute, seek, fullscreen).
+           preload="metadata" + faststart MP4 = playback begins almost instantly. -->
       <video class="video__media" playsinline preload="metadata">
         <source src="assets/video-element-new.mp4" type="video/mp4" />
       </video>
@@ -247,8 +249,8 @@
       onScroll();   // set correct state on load (e.g. reload mid-page)
     })();
 
-    // Hero video: cross-fade it in over the poster once its first frame is
-    // ready, so there's no hard poster->video jump on load.
+    // Hero video: cross-fade it in over the brand-green backdrop once its
+    // first frame is ready, so there's no hard cut-in on load.
     (function () {
       var v = document.querySelector('.hero__bg');
       var hero = v && v.closest('.hero');
