@@ -204,7 +204,7 @@ img {
   height: 3.75rem;
   background: #fff;
   border-radius: 0.375rem;
-  padding: 0.125rem 0.125rem 0.125rem 1.25rem;
+  padding: 0.125rem 0.129rem 0.125rem 1.25rem;
 }
 
 .notify input {
@@ -225,6 +225,8 @@ img {
 .notify button {
   flex: none;
   position: relative;
+  z-index: 1;
+  /* sit above the white pill so a forward lift isn't pinned to its walls */
   overflow: hidden;
   /* keep the water within the button */
   display: flex;
@@ -239,24 +241,37 @@ img {
   font: 500 0.875rem "Poppins", sans-serif;
   letter-spacing: 0.2px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.2s ease, box-shadow 0.25s ease;
 }
 
-/* on hover: stay in place and push toward the viewer (out of the screen) */
+/* on hover: darken and add a soft shadow — no lift, no 3D push.
+   Only the label zooms (see .submit__label rule below). */
 .notify button:hover {
+  z-index: 2;
   background: #0c4d45;
-  transform: perspective(600px) translateZ(28px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 14px 30px -6px rgba(0, 0, 0, 0.32);
 }
 
 .notify button:active {
-  transform: perspective(600px) translateZ(12px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26);
+  z-index: 2;
+  box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.26);
 }
 
 /* wider water graphic on the Join Peshagi button (desktop) */
 .notify button .submit__water {
   width: 85%;
+}
+
+/* the label eases in a subtle zoom on hover, reinforcing the
+   "moving toward you" feel without resizing the button itself */
+.notify button .submit__label {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  transform-origin: center;
+}
+
+.notify button:hover .submit__label {
+  transform: scale(1.08);
 }
 
 .hero__note {
