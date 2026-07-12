@@ -35,7 +35,7 @@
     <!-- Looping background video (muted so it can autoplay). The green
          overlay below keeps the hero text legible. -->
     <video class="hero__bg" autoplay muted loop playsinline preload="auto"
-           aria-hidden="true">
+           poster="assets/hero-poster.jpg" aria-hidden="true">
       <source src="assets/hero-new-v2.webm" type="video/webm" />
       <source src="assets/hero-video-new-v2.mp4" type="video/mp4" />
     </video>
@@ -249,21 +249,7 @@
       onScroll();   // set correct state on load (e.g. reload mid-page)
     })();
 
-    // Hero video: cross-fade it in over the brand-green backdrop once its
-    // first frame is ready, so there's no hard cut-in on load.
-    (function () {
-      var v = document.querySelector('.hero__bg');
-      var hero = v && v.closest('.hero');
-      if (!hero) return;
-      hero.classList.add('js-fade');   // arms the fade (no-JS keeps video visible)
-      function reveal() { v.classList.add('is-ready'); }
-      if (v.readyState >= 2) reveal();   // first frame already decoded
-      v.addEventListener('loadeddata', reveal);
-      v.addEventListener('canplay', reveal);
-      v.addEventListener('playing', reveal);
-    })();
-
-    // About headline: video-filled letters that type in one-by-one on scroll.
+// About headline: video-filled letters that type in one-by-one on scroll.
     (function () {
       var headline = document.querySelector('.about__headline');
       var fill = headline && headline.querySelector('.about__headline__fill');
