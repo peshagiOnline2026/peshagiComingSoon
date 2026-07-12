@@ -314,6 +314,7 @@ img {
 
 .about__left {
   grid-area: left;
+  text-align: justify;
 }
 
 .about__script {
@@ -324,12 +325,25 @@ img {
 .about__text p {
   font-size: 1rem;
   line-height: 1.7;
-  color: #111;
+  color: #000;
   margin-bottom: 1rem;
 }
 
 .about__text p:last-child {
   margin-bottom: 0;
+}
+
+/* Highlighted lines in the about copy, rendered in the brand green accent. */
+.about__text p.about__accent {
+  color: var(--green);
+}
+
+.about__text p.about__accent--bold {
+  font-weight: 600;
+}
+
+.about__text p.about__accent--medium {
+  font-weight: 500;
 }
 
 /* Offset the right column by the height of the "Relating to us" heading
