@@ -457,6 +457,20 @@ img {
   z-index: 0;
 }
 
+/* Native fullscreen: the video fills the whole screen, whose aspect ratio
+   rarely matches the clip's — so `cover` would crop/overflow it. Switch to
+   `contain` (letterbox) and reset the frame-fitting styles so the clip shows
+   whole and centred on any screen shape. */
+.video__media:fullscreen,
+.video__media:-webkit-full-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
 /* Dark scrim + play button shown while paused; both clear once playing so the
    native controls (mute/unmute, seek, fullscreen) are unobstructed. */
 .video__frame::before {
