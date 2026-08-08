@@ -1067,3 +1067,15 @@ img {
     margin-top: 0.75rem;
   }
 }
+
+/* ============================ HONEYPOT ============================
+   Off-screen rather than display:none — bots skip fields that are
+   obviously hidden, but they fill this one. Taken out of the flow so
+   it can't disturb either form's layout. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
