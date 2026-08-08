@@ -18,7 +18,7 @@
 
 const MIN_FILL_MS = 3000;         // humans take longer than this to fill a form
 const MAX_FORM_AGE_MS = 6 * 60 * 60 * 1000;
-const RATE_LIMIT_MAX = 5;         // submissions per IP per window
+const RATE_LIMIT_MAX = 20;        // submissions per IP per window
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const PURPOSES = ['General enquiry', 'Partnership', 'Press', 'Careers'];
 
@@ -26,6 +26,18 @@ const PURPOSES = ['General enquiry', 'Partnership', 'Press', 'Careers'];
 // This is a speed bump, not the security boundary; that's the revoked anon
 // INSERT policy plus the service-role key never leaving the server.
 const hits = new Map();
+
+/**
+ * Returns '' when the client can't be identified. Callers must then SKIP the
+ * rate limit rather than bucket everyone together — an earlier version fell
+ * back to a literal 'unknown' key, which put every unidentified visitor in one
+ * shared bucket and started returning 429 to legitimate users.
+ */
+function clientIp(req) {
+  const h = req.headers || {};
+  const first = (v) => String(v || '').split(',')[0].trim();
+  return first(h['x-forwarded-for']) || first(h['x-real-ip']) || first(h['x-vercel-forwarded-for']) || '';
+}
 
 function rateLimited(ip) {
   const now = Date.now();
@@ -131,8 +143,11 @@ module.exports = async function handler(req, res) {
 
   if (!originAllowed(req)) return res.status(403).json({ error: 'Forbidden' });
 
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (rateLimited(ip)) return res.status(429).json({ error: 'Too many submissions' });
+  // No identifiable IP → no rate limiting. The honeypot, timing and origin
+  // checks are what actually filter bots; a shared bucket would only deny
+  // service to real people.
+  const ip = clientIp(req);
+  if (ip && rateLimited(ip)) return res.status(429).json({ error: 'Too many submissions' });
 
   const body = typeof req.body === 'string' ? safeParse(req.body) : req.body;
   if (!body) return res.status(400).json({ error: 'Bad request' });
