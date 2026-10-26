@@ -3,6 +3,13 @@
   "functions": {
     "api/submit.js": {
       "maxDuration": 20
+    },
+    "api/keepalive.js": {
+      "maxDuration": 15
     }
-  }
+  },
+  "crons": [
+    { "path": "/api/keepalive", "schedule": "0 3 * * *" },
+    { "path": "/api/keepalive", "schedule": "0 15 * * *" }
+  ]
 }
