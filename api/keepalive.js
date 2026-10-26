@@ -38,8 +38,14 @@ module.exports = async function handler(req, res) {
   }
 
   // Fail closed: with CRON_SECRET unset, "Bearer undefined" must not match.
+  // Unset is a config error, not a bad caller — log it, or a deployment that
+  // predates the env var 401s every cron run with nothing in the log saying why.
   const secret = process.env.CRON_SECRET;
-  if (!secret || req.headers.authorization !== `Bearer ${secret}`) {
+  if (!secret) {
+    console.error('[keepalive] CRON_SECRET is not set on this deployment — every cron call is refused');
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  if (req.headers.authorization !== `Bearer ${secret}`) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
